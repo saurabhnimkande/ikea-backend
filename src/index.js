@@ -4,13 +4,8 @@ const app = express();
 
 app.use(express.json());
 
+const productController = require("./Controllers/product.controller");
 
-
-const productController = require("./Controllers/productsController");
-
-
-app.use("/products",productController)
-
-
+app.use("/products", productController);
 
 module.exports = app;
