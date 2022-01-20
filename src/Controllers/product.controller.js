@@ -15,12 +15,7 @@ router.get("", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    console.log(req.params.id);
-    const product = await Products.findOne({
-      "allProductsData._id": req.params.id,
-    })
-      .lean()
-      .exec();
+    const product = await Products.findById(req.params.id).lean().exec();
     return res.status(201).send(product);
   } catch (e) {
     return res.status(500).send({ message: e.message, status: "failed" });
