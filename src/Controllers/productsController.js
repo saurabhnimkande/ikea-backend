@@ -17,9 +17,9 @@ router.get("", async (req, res) => {
 })
 
 
-router.get("/products/name", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try{
-        const products = await Products.find().lean().exec();
+        const products = await Products.findById(req.params.id).lean().exec();
         return res.status(201).send(products);
     }
     catch(e){
