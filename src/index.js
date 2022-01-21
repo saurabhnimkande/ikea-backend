@@ -16,13 +16,8 @@ app.use(
 const productController = require("./Controllers/product.controller");
 const cartController = require("./Controllers/cart.controller");
 
-app.get("/", (req, res) => {
-  res.send("Ikea Clone-Backend");
-
-  res.end();
-});
-
 app.use("/products", productController);
 app.use("/cart", cartController);
+app.use(express.static("public"));
 
 module.exports = app;
