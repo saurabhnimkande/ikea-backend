@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const connect = require("./src/Configs/db");
 
 app.use(express.json());
 app.use(cors());
@@ -13,11 +14,14 @@ app.use(
   })
 );
 
-const productController = require("./Controllers/product.controller");
-const cartController = require("./Controllers/cart.controller");
+const productController = require("./src/Controllers/product.controller");
+const cartController = require("./src/Controllers/cart.controller");
 
 app.use("/products", productController);
 app.use("/cart", cartController);
 app.use(express.static("public"));
 
-module.exports = app;
+app.listen(process.env.PORT || 5000, async () => {
+  await connect();
+  console.log("Listining to port 5000");
+});
